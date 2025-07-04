@@ -3,10 +3,8 @@ import { Document, Types } from 'mongoose';
 import { VoucherEntry, VoucherEntrySchema } from './voucher-entry.schema';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
-export type VoucherDocument = Voucher & Document;
-
 @Schema({ timestamps: true })
-export class Voucher {
+export class Voucher extends Document {
   @ApiProperty({ description: 'Type of voucher', enum: ['PAYMENT', 'RECEIPT', 'JOURNAL', 'CONTRA', 'SALES', 'PURCHASE'], example: 'PAYMENT' })
   @Prop({
     type: String,
@@ -44,4 +42,5 @@ export class Voucher {
   createdAt: Date;
 }
 
+export type VoucherDocument = Voucher;
 export const VoucherSchema = SchemaFactory.createForClass(Voucher);

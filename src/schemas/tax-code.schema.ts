@@ -2,10 +2,8 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
-export type TaxCodeDocument = TaxCode & Document;
-
 @Schema({ timestamps: true })
-export class TaxCode {
+export class TaxCode extends Document {
   @ApiPropertyOptional({ description: 'HSN/SAC code', example: '9983' })
   @Prop()
   code: string; // HSN/SAC
@@ -31,4 +29,5 @@ export class TaxCode {
   company: Types.ObjectId;
 }
 
+export type TaxCodeDocument = TaxCode;
 export const TaxCodeSchema = SchemaFactory.createForClass(TaxCode);

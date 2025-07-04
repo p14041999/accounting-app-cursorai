@@ -2,10 +2,8 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
-export type LedgerDocument = Ledger & Document;
-
 @Schema({ timestamps: true })
-export class Ledger {
+export class Ledger extends Document {
   @ApiProperty({ description: 'Name of the ledger', example: 'Cash' })
   @Prop({ required: true })
   name: string;
@@ -31,4 +29,5 @@ export class Ledger {
   createdAt: Date;
 }
 
+export type LedgerDocument = Ledger;
 export const LedgerSchema = SchemaFactory.createForClass(Ledger);

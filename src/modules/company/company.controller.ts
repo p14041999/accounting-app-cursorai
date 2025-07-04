@@ -6,18 +6,25 @@ import {
   Delete,
   Param,
   Body,
+  UseGuards,
 } from '@nestjs/common';
 import { CompanyService } from './company.service';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
+import { Roles } from '../auth/roles.decorator';
+import { RolesGuard } from '../auth/roles.guard';
 
 @ApiTags('Company')
+@UseGuards(AuthGuard('jwt'))
 @Controller('companies')
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}
 
   @Post()
+  @UseGuards(RolesGuard)
+  @Roles('ADMIN')
   @ApiOperation({ summary: 'Create a new company' })
   @ApiBody({ type: CreateCompanyDto })
   @ApiResponse({ status: 201, description: 'The company has been successfully created.' })

@@ -2,10 +2,8 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
-export type AccountGroupDocument = AccountGroup & Document;
-
 @Schema({ timestamps: true })
-export class AccountGroup {
+export class AccountGroup extends Document {
   @ApiProperty({ description: 'Name of the account group', example: 'Current Assets' })
   @Prop({ required: true })
   name: string;
@@ -23,11 +21,7 @@ export class AccountGroup {
   company: Types.ObjectId;
 
   @ApiProperty({ description: 'Nature of the group', enum: ['ASSET', 'LIABILITY', 'INCOME', 'EXPENSE'], example: 'ASSET' })
-  @Prop({
-    type: String,
-    enum: ['ASSET', 'LIABILITY', 'INCOME', 'EXPENSE'],
-    required: true,
-  })
+  @Prop({ type: String, enum: ['ASSET', 'LIABILITY', 'INCOME', 'EXPENSE'], required: true })
   nature: string;
 
   @ApiPropertyOptional({ description: 'Created at timestamp', example: '2024-04-01T00:00:00.000Z' })
@@ -35,4 +29,5 @@ export class AccountGroup {
   createdAt: Date;
 }
 
+export type AccountGroupDocument = AccountGroup;
 export const AccountGroupSchema = SchemaFactory.createForClass(AccountGroup);

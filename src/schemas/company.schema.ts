@@ -2,10 +2,8 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
-export type CompanyDocument = Company & Document;
-
 @Schema({ timestamps: true })
-export class Company {
+export class Company extends Document {
   @ApiProperty({ description: 'Name of the company', example: 'Acme Corp' })
   @Prop({ required: true })
   name: string;
@@ -35,4 +33,5 @@ export class Company {
   createdAt: Date;
 }
 
+export type CompanyDocument = Company;
 export const CompanySchema = SchemaFactory.createForClass(Company);

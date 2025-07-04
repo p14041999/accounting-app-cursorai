@@ -2,10 +2,8 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 
-export type ExchangeRateDocument = ExchangeRate & Document;
-
 @Schema({ timestamps: true })
-export class ExchangeRate {
+export class ExchangeRate extends Document {
   @ApiProperty({ description: 'Source currency', example: 'USD' })
   @Prop({ required: true })
   fromCurrency: string;
@@ -23,4 +21,5 @@ export class ExchangeRate {
   date: Date;
 }
 
+export type ExchangeRateDocument = ExchangeRate;
 export const ExchangeRateSchema = SchemaFactory.createForClass(ExchangeRate);

@@ -11,8 +11,11 @@ export class UserService {
     @InjectModel(User.name) private userModel: Model<UserDocument>,
   ) {}
 
-  async register(registerUserDto: RegisterUserDto): Promise<User> {
-    const created = new this.userModel(registerUserDto);
+  async register(registerUserDto: Omit<RegisterUserDto, 'password'> & { passwordHash: string }): Promise<User> {
+    const created = new this.userModel({
+      ...registerUserDto,
+      passwordHash: registerUserDto.passwordHash,
+    });
     return created.save();
   }
 

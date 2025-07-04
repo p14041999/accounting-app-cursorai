@@ -6,6 +6,7 @@ import { UserModule } from './modules/user/user.module';
 import { AccountGroupModule } from './modules/account-group/account-group.module';
 import { LedgerModule } from './modules/ledger/ledger.module';
 import { VoucherModule } from './modules/voucher/voucher.module';
+import { AuthModule } from './modules/auth/auth.module';
 import configuration from './config/configurations';
 
 @Module({
@@ -23,6 +24,7 @@ import configuration from './config/configurations';
     AccountGroupModule,
     LedgerModule,
     VoucherModule,
+    AuthModule,
   ],
 })
 export class AppModule {}

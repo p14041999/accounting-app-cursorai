@@ -2,10 +2,8 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
-export type UserDocument = User & Document;
-
 @Schema({ timestamps: true })
-export class User {
+export class User extends Document {
   @ApiProperty({ description: 'Name of the user', example: 'John Doe' })
   @Prop({ required: true })
   name: string;
@@ -19,11 +17,7 @@ export class User {
   passwordHash: string;
 
   @ApiProperty({ description: 'Role of the user', enum: ['ADMIN', 'ACCOUNTANT', 'AUDITOR'], example: 'ADMIN' })
-  @Prop({
-    type: String,
-    enum: ['ADMIN', 'ACCOUNTANT', 'AUDITOR'],
-    required: true,
-  })
+  @Prop({ type: String, enum: ['ADMIN', 'ACCOUNTANT', 'AUDITOR'], required: true })
   role: string;
 
   @ApiPropertyOptional({ description: 'List of company IDs the user is associated with', example: ['665b1c2e5f1b2c3d4e5f6a7b'] })
@@ -35,4 +29,5 @@ export class User {
   createdAt: Date;
 }
 
+export type UserDocument = User;
 export const UserSchema = SchemaFactory.createForClass(User);
