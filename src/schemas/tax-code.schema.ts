@@ -5,7 +5,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 @Schema({ timestamps: true })
 export class TaxCode extends Document {
   @ApiPropertyOptional({ description: 'HSN/SAC code', example: '9983' })
-  @Prop()
+  @Prop({ index: true, required: true })
   code: string; // HSN/SAC
 
   @ApiPropertyOptional({ description: 'Description of the tax code', example: 'Professional Services' })

@@ -27,6 +27,10 @@ export class Item extends Document {
   @ApiProperty({ description: 'Company ID', example: '665b1c2e5f1b2c3d4e5f6a7b' })
   @Prop({ type: Types.ObjectId, ref: 'Company' })
   company: Types.ObjectId;
+
+  @ApiPropertyOptional({ description: 'HSN code (TaxCode reference)', example: '665b1c2e5f1b2c3d4e5f6a7b' })
+  @Prop({ type: Types.ObjectId, ref: 'TaxCode' })
+  hsnCode: Types.ObjectId;
 }
 
 export type ItemDocument = Item;
