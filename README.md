@@ -1,98 +1,142 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+Excellent — here’s a clean and structured **module-wise implementation roadmap** divided by your 4 phases. This covers both **backend logic** and how to **prioritize development**:
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+---
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## ✅ **Phase 1 – Core Accounting (MVP)**
 
-## Description
+**Goal:** Fully functional double-entry accounting, Day Book, Ledger, Trial Balance
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### 🔹 Modules to Implement:
 
-## Project setup
+1. **Auth Module**
 
-```bash
-$ npm install
-```
+   * User registration/login with JWT
+   * Role-based access control (Admin, Accountant)
 
-## Compile and run the project
+2. **Company Management Module**
 
-```bash
-# development
-$ npm run start
+   * Create/Edit company
+   * Assign users to companies
 
-# watch mode
-$ npm run start:dev
+3. **Chart of Accounts Module**
 
-# production mode
-$ npm run start:prod
-```
+   * Create/Edit/Delete Account Groups
+   * Create/Edit/Delete Ledgers
 
-## Run tests
+4. **Voucher Module**
 
-```bash
-# unit tests
-$ npm run test
+   * Create/Read Vouchers (Payment, Receipt, Journal, Contra)
+   * Validate debit = credit rule
+   * Attach voucher to ledger
 
-# e2e tests
-$ npm run test:e2e
+5. **Reporting Module**
 
-# test coverage
-$ npm run test:cov
-```
+   * Day Book (date-wise voucher list)
+   * Ledger Report (with running balance)
+   * Trial Balance
 
-## Deployment
+---
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## ⚙️ **Phase 2 – Inventory, Sales & Purchase**
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+**Goal:** Manage stock, automate Sales/Purchase vouchers, and track inventory
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+### 🔹 Modules to Implement:
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+1. **Item Management Module**
 
-## Resources
+   * Add/Edit/Delete Items
+   * Grouping (e.g., Raw Materials, Finished Goods)
+   * Units of Measurement
 
-Check out a few resources that may come in handy when working with NestJS:
+2. **Inventory Transactions Module**
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+   * Auto IN/OUT with vouchers
+   * Stock Summary / Valuation
 
-## Support
+3. **Voucher Enhancements**
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+   * Add Sales & Purchase types
+   * Attach inventory entries (auto post `InventoryTransaction`)
 
-## Stay in touch
+4. **Stock Report Module**
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+   * Current stock position
+   * Movement history per item
 
-## License
+---
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## 📊 **Phase 3 – Advanced Tax, Bank, Reports**
+
+**Goal:** Handle taxation, reconciliations, and financial statements
+
+### 🔹 Modules to Implement:
+
+1. **GST/Tax Management Module**
+
+   * Tax Code master (HSN/SAC, CGST/SGST/IGST)
+   * Embed tax in vouchers
+
+2. **GSTR Reports Generator**
+
+   * GSTR-1 (Sales)
+   * GSTR-2 (Purchases)
+   * GSTR-3B summary
+
+3. **Bank Reconciliation Module**
+
+   * Upload/import bank statements
+   * Match with vouchers
+   * Mark as cleared/uncleared
+
+4. **Financial Statements Module**
+
+   * Profit & Loss
+   * Balance Sheet
+   * Cash Flow (optional)
+
+---
+
+## 💼 **Phase 4 – Payroll, Projects, Multi-currency**
+
+**Goal:** Complete enterprise-grade features
+
+### 🔹 Modules to Implement:
+
+1. **Employee & Payroll Module**
+
+   * Add employees
+   * Generate payslips
+   * Journal entries auto-created
+
+2. **Project/Cost Center Module**
+
+   * Create projects
+   * Assign vouchers to projects
+   * Project-wise P\&L reporting
+
+3. **Multi-currency Module**
+
+   * Maintain exchange rates
+   * Tag currency in voucher
+   * Convert balances for global reports
+
+4. **Audit & Logs**
+
+   * Track changes in vouchers, ledgers, users
+   * Admin view logs
+
+---
+
+## 🚦 Suggested Implementation Order:
+
+| Phase   | Estimated % of Effort | Priority                              |
+| ------- | --------------------- | ------------------------------------- |
+| Phase 1 | ✅ 40%                 | Must have to go live                  |
+| Phase 2 | ⚙️ 20%                | Inventory-based businesses            |
+| Phase 3 | 📊 25%                | Compliance and finance team usage     |
+| Phase 4 | 💼 15%                | Optional — for large teams or exports |
+
+---
+
+Would you like me to begin implementing **Phase 1 (Auth → Trial Balance)** with services and controllers first?
