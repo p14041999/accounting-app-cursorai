@@ -138,5 +138,3 @@ Excellent — here’s a clean and structured **module-wise implementation roadm
 | Phase 4 | 💼 15%                | Optional — for large teams or exports |
 
 ---
-
-Would you like me to begin implementing **Phase 1 (Auth → Trial Balance)** with services and controllers first?
